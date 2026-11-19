@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenCode Rotating Proxy Relay
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/opencode-unlimited
+Environment=LISTEN_PORT=20988
+Environment=OC_STATE_DIR=/opt/opencode-unlimited/state
+ExecStart=/usr/bin/python3 -u /opt/opencode-unlimited/scripts/rotating_proxy_relay.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

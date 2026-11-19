@@ -1,0 +1,17 @@
+[Unit]
+Description=OpenCode Unlimited OpenAI-Compatible Bridge
+After=network-online.target opencode-daemon.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/opencode-unlimited
+Environment=BRIDGE_PORT=20900
+Environment=OC_STATE_DIR=/opt/opencode-unlimited/state
+Environment=OPENCODE_SERVER_PASSWORD=change-me
+Environment=OPENCODE_BIN=/root/.opencode/bin/opencode
+ExecStart=/usr/bin/python3 -u /opt/opencode-unlimited/scripts/oc_bridge.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

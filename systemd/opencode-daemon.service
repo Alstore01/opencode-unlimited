@@ -1,0 +1,23 @@
+[Unit]
+Description=OpenCode Background Inference Daemon
+After=network.target oc-proxy-relay.service
+Requires=oc-proxy-relay.service
+
+[Service]
+Type=simple
+WorkingDirectory=/tmp/oc_empty
+Environment=HOME=/tmp/oc_daemon
+Environment=OPENCODE_PASSWORD=change-me
+Environment=OPENCODE_SERVER_PASSWORD=change-me
+Environment=OPENCODE_DISABLE_AUTOUPDATE=1
+Environment=HTTP_PROXY=http://127.0.0.1:20988
+Environment=HTTPS_PROXY=http://127.0.0.1:20988
+Environment=NO_PROXY=localhost,127.0.0.1,::1
+ExecStartPre=/bin/mkdir -p /tmp/oc_daemon /tmp/oc_empty
+ExecStart=/root/.opencode/bin/opencode serve --port 20999 --hostname 127.0.0.1
+Restart=always
+RestartSec=3
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
