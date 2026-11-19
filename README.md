@@ -108,4 +108,11 @@ print(resp.choices[0].message.content)
 ```
 
 ### Model ID yang Didukung
+Saat tulisan ini dibuat, model gratis OpenCode yang dipetakan di `MODEL_MAP` (`scripts/oc_bridge.py`) adalah:
 `beam`, `big-pickle`, `deepseek-v4.1-flash`, `flint-40b`, `hy4-flash`, `iceman`, `inkling-2-small`, `longcat-2.5`, `mimo-v2.6-flash`, `nemotron-3.5-lightning`, `nemotron-3.5-super-vl`.
+
+> **Catatan:** Daftar model gratis OpenCode bersifat **dinamis** dan bisa berubah sewaktu-waktu dari upstream (ada model baru yang masuk atau model lama yang dihapus). Untuk melihat daftar model terbaru yang tersedia, jalankan:
+> ```bash
+> opencode models | grep ^opencode/
+> ```
+> lalu sesuaikan `MODEL_MAP` di `scripts/oc_bridge.py` jika ada perubahan, atau cek endpoint `GET /v1/models` saat bridge berjalan.
